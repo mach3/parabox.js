@@ -1,0 +1,275 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>ParaBox Demo</title>
+
+	<style>
+		body {
+			position: relative;
+			background-color: #222;
+		}
+		#label {
+			position: fixed;
+			right: 0;
+			top: 0;
+			padding: 1em;
+			background-color: #000;
+			color: #fff;
+			z-index: 10;
+		}
+		.page {
+			width: 1024px;
+			margin: 0 auto;
+		}
+		.section {
+			background-position: center top;
+			padding: 10px;
+			height: 640px;
+			position: relative;
+			overflow: hidden;
+		}
+
+		.section-head {
+			background-color: #fff;
+		}
+			.section-head .inner {
+				padding: 3em;
+			}
+		.section-foot {
+			color: #fff;
+			line-height: 480px;
+			text-align: center;
+			font-size: 3em;
+		}
+
+		.item-holder, .item {
+			position: absolute;
+			width: 240px;
+			height: 240px;
+		}
+		.item {
+			line-height: 240px;
+			text-align: center;
+		}
+
+		.photo-001 {
+			background-image: url(http://farm4.staticflickr.com/3681/9345404110_10c900ae32_o.jpg);
+		}
+
+			.photo-001 .item-holder {
+				right: 0;
+				top: 0;
+			}
+			.photo-001 .item {
+				background-color: #900;
+				color: #fff;
+			}
+		.photo-002 {
+			background-image: url(http://farm4.staticflickr.com/3751/9342615915_1d7e61f105_o.jpg);
+		}
+			.photo-002 .item-holder {
+				left: 0;
+				top: 0;
+			}
+			.photo-002 .item {
+				background-color: #600;
+				color: #fff;
+			}
+		.photo-003 {
+			background-image: url(http://farm4.staticflickr.com/3782/9342615783_ef7a5d0a32_o.jpg);
+		}
+			.photo-003 .item-holder {
+				left: 50%;
+				top: 16px;
+				margin-left: -120px;
+			}
+			.photo-003 .item {
+				background-color: #009;
+				color: #fff;
+			}
+		.photo-004 {
+			background-image: url(http://farm6.staticflickr.com/5342/9345403622_fd1ffe2638_o.jpg);
+		}
+			.photo-004 .item-holder {
+				right: 0;
+				top: 50%;
+				margin-top: -120px;
+			}
+			.photo-004 .item {
+				background-color: #000;
+				color: #fff;
+			}
+		.photo-005 {
+			background-image: url(http://farm8.staticflickr.com/7304/9345403638_26d3e1f6b0_o.jpg);
+		}
+			.photo-005 .item-holder {
+				left: 100px;
+				top: 100px;
+			}
+			.photo-005 .item {
+				font-size: 5em;
+				color: #fff;
+			}
+		.photo-006 {
+			background-image: url(http://farm8.staticflickr.com/7379/9345403538_309b349c5f_o.jpg);
+		}
+			.photo-006 .item-holder {
+				left: 0;
+				bottom: 0;
+			}
+			.photo-006 .item {
+				background-color: #060;
+				color: #fff;
+			}
+	</style>
+
+
+</head>
+<body>
+
+	<div id="label">
+		PARABOX DEMO
+	</div>
+
+	<div class="page">
+		<div class="section section-head">
+			<div class="inner">
+				<h1>ParaBox DEMO</h1>
+				<p>
+					Lorem ipsum dolor sit amet, consectetur adipisicing elit. Eius, nostrum voluptas laborum obcaecati suscipit nemo incidunt. Officia, error, voluptas, corrupti iusto omnis tempore officiis at culpa molestias incidunt unde doloribus!
+				</p>
+				<p>
+					Lorem ipsum dolor sit amet, consectetur adipisicing elit. Eius, nostrum voluptas laborum obcaecati suscipit nemo incidunt. Officia, error, voluptas, corrupti iusto omnis tempore officiis at culpa molestias incidunt unde doloribus!
+				</p>
+			</div>
+		</div>
+		<div class="section para-bg photo-001">
+			<div class="item-holder">
+				<div class="item">UMEBOSHI</div>
+			</div>
+		</div>
+		<div class="section para-bg photo-002">
+			<div class="item-holder">
+				<div class="item">RENGA</div>
+			</div>
+		</div>
+		<div class="section para-bg photo-003">
+			<div class="item-holder">
+				<div class="item">FESTIBAL</div>
+			</div>
+		</div>
+		<div class="section para-bg photo-004">
+			<div class="item-holder">
+				<div class="item">TORI-JAYA</div>
+			</div>
+		</div>
+		<div class="section para-bg photo-005">
+			<div class="item-holder">
+				<div class="item">CAT</div>
+			</div>
+		</div>
+		<div class="section para-bg photo-006">
+			<div class="item-holder">
+				<div class="item">GOOD BYE</div>
+			</div>
+		</div>
+		<div class="section section-foot">
+			END
+		</div>
+	</div>
+
+	<script src="../components/jquery/jquery.min.js"></script>
+	<script src="../src/parabox.js"></script>
+	<script>
+
+	// Background parallax
+	$(".para-bg").parabox("background", {
+		bgHeight: 848,
+		area: 200
+	});
+
+	// Item parallax
+	$(".photo-001 .item").parabox("item", {
+		top: $(".photo-001").offset().top - 240,
+		from: {
+			top: -240
+		},
+		to: {
+			top: 0
+		}
+	});
+
+	$(".photo-002 .item").parabox("item", {
+		top: $(".photo-002").offset().top - 240,
+		from: {
+			left: -240,
+			top: -240
+		},
+		to: {
+			left: 0,
+			top: 0
+		}
+	});
+
+	$(".photo-003 .item").parabox("item", {
+		top: $(".photo-003").offset().top - 240,
+		from: {
+			opacity: 0
+		},
+		to: {
+			opacity: 1
+		}
+	});
+
+	$(".photo-004 .item").parabox("item", {
+		top: $(".photo-004").offset().top - 240,
+		from: {
+			right: -240,
+			opacity: 0
+		},
+		to: {
+			right: 0,
+			opacity: 1
+		}
+	});
+	$(".photo-005 .item").parabox("item", {
+		top: $(".photo-005").offset().top - 240,
+		from: {
+			opacity: 0,
+			top: 50
+		},
+		to: {
+			opacity: 1,
+			top: 0
+		}
+	});
+	$(".photo-006 .item").parabox("item", {
+		top: $(".photo-006").offset().top,
+		from: {
+			bottom: -240
+		},
+		to: {
+			bottom: 0
+		}
+	});
+
+	// Handler on section change
+	$(document).parabox("section", {
+		"head": 0,
+		"umeboshi": $(".photo-001").offset().top,
+		"renga": $(".photo-002").offset().top,
+		"festival": $(".photo-003").offset().top,
+		"tori-chaya": $(".photo-004").offset().top,
+		"cat": $(".photo-005").offset().top,
+		"goot-bye": $(".photo-006").offset().top
+	})
+	.on("sectionChange", function(e, data){
+		var name = data.name ? data.name : "head";
+		$("#label").text(name.toUpperCase());
+	});
+
+	</script>
+
+</body>
+</html>
