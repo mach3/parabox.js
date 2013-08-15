@@ -52,6 +52,7 @@ $(".element-to-animte-for-scrolling").parabox("item", {
 - bottom:Integer (null) : Scroll bottom align which deactivates item
 - easing:String ("swing") : Easing function name
 - duration:Integer (500) : Duration time for animation
+- delay:Integer (0) : Delay for starting animation
 - from:Object ({}) : Styles when it's deactive
 - to:Object ({}) : Styles when it's active
 

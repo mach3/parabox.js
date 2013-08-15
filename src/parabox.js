@@ -83,6 +83,7 @@
 		 * - bottom:Integer = Bottom align for the area which activates the item
 		 * - easing:String = Easing function's name for animation
 		 * - duration:Integer = Duration time for animation
+		 * - delay:Integer = Delay time for starting animation
 		 * - from:Object = CSS when deactivated
 		 * - to:Object = CSS when activated
 		 */
@@ -91,6 +92,7 @@
 			bottom: null,
 			easing: "swing",
 			duration: 500,
+			delay: 0,
 			from: {},
 			to: {}
 		},
@@ -112,6 +114,7 @@
 				attrs = {
 					easing: options.easing,
 					duration: options.duration,
+					delay: options.delay,
 					top: options.top,
 					bottom: options.bottom,
 					from: options.from,
@@ -136,7 +139,7 @@
 			show = this.data("paraBoxShow");
 			inRange = $.ParaBox.util.inRange(scroll, attrs.top, attrs.bottom);
 			if((show && ! inRange) || (! show && inRange)){
-				this.stop().animate(show ? attrs.from : attrs.to, {
+				this.stop().delay(attrs.delay).animate(show ? attrs.from : attrs.to, {
 					easing: attrs.easing,
 					duration: attrs.duration
 				});

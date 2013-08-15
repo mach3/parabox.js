@@ -79,10 +79,18 @@
 		.photo-003 {
 			background-image: url(http://farm4.staticflickr.com/3782/9342615783_ef7a5d0a32_o.jpg);
 		}
-			.photo-003 .item-holder {
+			.photo-003 .item-holder-01 {
 				left: 50%;
 				top: 16px;
 				margin-left: -120px;
+			}
+			.photo-003 .item-holder-02 {
+				left: 50px;
+				top: 16px;
+			}
+			.photo-003 .item-holder-03 {
+				right: 50px;
+				top: 16px;
 			}
 			.photo-003 .item {
 				background-color: #009;
@@ -155,8 +163,14 @@
 			</div>
 		</div>
 		<div class="section para-bg photo-003">
-			<div class="item-holder">
-				<div class="item">FESTIBAL</div>
+			<div class="item-holder item-holder-01">
+				<div class="item item-01">FESTIBAL</div>
+			</div>
+			<div class="item-holder item-holder-02">
+				<div class="item item-02">FESTIBAL</div>
+			</div>
+			<div class="item-holder item-holder-03">
+				<div class="item item-03">FESTIBAL</div>
 			</div>
 		</div>
 		<div class="section para-bg photo-004">
@@ -212,8 +226,30 @@
 		}
 	});
 
-	$(".photo-003 .item").parabox("item", {
+	$(".photo-003 .item-01").parabox("item", {
 		top: $(".photo-003").offset().top - 240,
+		from: {
+			opacity: 0
+		},
+		to: {
+			opacity: 1
+		}
+	});
+
+	$(".photo-003 .item-02").parabox("item", {
+		top: $(".photo-003").offset().top - 240,
+		delay: 500,
+		from: {
+			opacity: 0
+		},
+		to: {
+			opacity: 1
+		}
+	});
+
+	$(".photo-003 .item-03").parabox("item", {
+		top: $(".photo-003").offset().top - 240,
+		delay: 1000,
 		from: {
 			opacity: 0
 		},
