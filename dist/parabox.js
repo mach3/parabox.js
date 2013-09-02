@@ -1,7 +1,7 @@
 /*!
  * ParaBox.js
  * ----------
- * @version 0.9.1
+ * @version 0.9.2
  * @author mach3 <http://github.com/mach3>
  * @license MIT License
  * @url http://github.com/mach3/parabox.js
@@ -95,6 +95,7 @@
 		 * - delay:Integer = Delay time for starting animation
 		 * - from:Object = CSS when deactivated
 		 * - to:Object = CSS when activated
+		 * - done:Function = Handler for animation completeing `function(show, promise, jumbed)`
 		 */
 		defaults: {
 			top: null,
@@ -103,7 +104,8 @@
 			duration: 500,
 			delay: 0,
 			from: {},
-			to: {}
+			to: {},
+			done: function(){}
 		},
 
 		/**
@@ -118,20 +120,10 @@
 				options.bottom = $("body").height();
 			}
 			nodes.each(function(){
-				var node, attrs;
-				node = $(this);
-				attrs = {
-					easing: options.easing,
-					duration: options.duration,
-					delay: options.delay,
-					top: options.top,
-					bottom: options.bottom,
-					from: options.from,
-					to: options.to
-				};
-				node.data("paraBoxAttrs", attrs);
+				var node = $(this);
+				node.data("paraBoxAttrs", options);
 				node.data("paraBoxShow", false);
-				node.css(attrs.from);
+				node.css(options.from);
 				$(window).on("scroll", $.proxy(my.onScroll, node));
 			});
 		},
@@ -142,15 +134,22 @@
 		 * The node animates to from/to styles when the activated status changes
 		 */
 		onScroll: function(){
-			var scroll, attrs, show, inRange;
+			var scroll, attrs, show, inRange, done;
 			scroll = $(window).scrollTop();
 			attrs = this.data("paraBoxAttrs");
 			show = this.data("paraBoxShow");
+			done = function(){
+				var node, args;
+				node = $(this);
+				args = [node.data("paraBoxShow")].concat([].slice.call(arguments));
+				node.data("paraBoxAttrs").done.apply(this, args);
+			};
 			inRange = $.ParaBox.util.inRange(scroll, attrs.top, attrs.bottom);
 			if((show && ! inRange) || (! show && inRange)){
 				this.stop().delay(attrs.delay).animate(show ? attrs.from : attrs.to, {
 					easing: attrs.easing,
-					duration: attrs.duration
+					duration: attrs.duration,
+					done: done
 				});
 				this.data("paraBoxShow", ! show);
 			}

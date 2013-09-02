@@ -44,7 +44,11 @@ $(".element-to-animte-for-scrolling").parabox("item", {
 	easing: "swing",
 	duration: 500,
 	from: { left: -100, opactiy: 0 },
-	to: { left: 0, opacity: 1 }
+	to: { left: 0, opacity: 1 },
+    done: function(show){
+        console.log(show ? "show" : "hide");
+    }
+}
 });
 ```
 
@@ -55,6 +59,7 @@ $(".element-to-animte-for-scrolling").parabox("item", {
 - delay:Integer (0) : Delay for starting animation
 - from:Object ({}) : Styles when it's deactive
 - to:Object ({}) : Styles when it's active
+- done:Function (function(){}) : Handler for completing animation
 
 When `bottom` is null, it will be set page's height
 
